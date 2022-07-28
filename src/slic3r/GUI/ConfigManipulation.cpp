@@ -389,7 +389,6 @@ void ConfigManipulation::toggle_print_fff_options(DynamicPrintConfig* config)
                     "infill_speed" })
         toggle_field(el, have_infill || has_solid_infill);
 
-    toggle_field("spiral_vase_perimeters", has_spiral_vase);
     toggle_field("top_solid_min_thickness", ! has_spiral_vase && has_top_solid_infill);
     toggle_field("bottom_solid_min_thickness", ! has_spiral_vase && has_bottom_solid_infill);
 

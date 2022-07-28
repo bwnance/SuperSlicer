@@ -3949,16 +3949,6 @@ void PrintConfigDef::init_fff_params()
     def->mode = comSimpleAE | comPrusa;
     def->set_default_value(new ConfigOptionInt(3));
 
-    def = this->add("spiral_vase_perimeters", coInt);
-    def->label = L("Spiral Vase Perimeters");
-    def->full_label = L("Spiral Vase Perimeters count");
-    def->category = OptionCategory::perimeter;
-    def->tooltip = L("This option sets the number of perimeters in a vase mode print.");
-    def->min = 0;
-    def->max = 10000;
-    def->mode = comSimpleAE | comPrusa;
-    def->set_default_value(new ConfigOptionInt(1));
-
     def = this->add("post_process", coStrings);
     def->label = L("Post-processing scripts");
     def->category = OptionCategory::customgcode;
@@ -8101,9 +8091,7 @@ std::string validate(const FullPrintConfig& cfg)
     // --perimeters
     if (cfg.perimeters.value < 0)
         return "Invalid value for --perimeters";
-    // --spiral-vase-perimeters
-    if (cfg.spiral_vase_perimeters.value < 0)
-        return "Invalid value for --spiral-vase-perimeters";
+        
     // --solid-layers
     if (cfg.top_solid_layers < 0)
         return "Invalid value for --top-solid-layers";

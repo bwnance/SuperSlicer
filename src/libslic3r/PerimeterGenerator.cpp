@@ -419,7 +419,7 @@ void PerimeterGenerator::process()
                 loop_number = config->perimeters - 1;
             }
             else {
-                loop_number = config->spiral_vase_perimeters - 1;
+                loop_number = 0;
             }
         }
         

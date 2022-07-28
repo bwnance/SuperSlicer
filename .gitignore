@@ -7,6 +7,7 @@ _build
 blib
 xs/buildtmp
 *.o
+*.mo
 MANIFEST.bak
 xs/MANIFEST.bak
 xs/assertlib*
@@ -18,6 +19,7 @@ local-lib
 build*
 deps/build*
 deps/deps-*
+cmake/CPackConfig.cmake
 
 # MacOS Ignores
 .DS_Store

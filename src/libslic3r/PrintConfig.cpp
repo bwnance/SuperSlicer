@@ -1358,6 +1358,7 @@ void PrintConfigDef::init_fff_params()
     def->mode = comExpert | comSuSi;
     def->set_default_value(new ConfigOptionEnum<InfillPattern>(ipRectilinearWGapFill));
 
+
     def = this->add("enforce_full_fill_volume", coBool);
     def->label = L("Enforce 100% fill volume");
     def->category = OptionCategory::infill;
@@ -3947,6 +3948,16 @@ void PrintConfigDef::init_fff_params()
     def->max = 10000;
     def->mode = comSimpleAE | comPrusa;
     def->set_default_value(new ConfigOptionInt(3));
+
+    def = this->add("spiral_vase_perimeters", coInt);
+    def->label = L("Spiral Vase Perimeters");
+    def->full_label = L("Spiral Vase Perimeters count");
+    def->category = OptionCategory::perimeter;
+    def->tooltip = L("This option sets the number of perimeters in a vase mode print.");
+    def->min = 0;
+    def->max = 10000;
+    def->mode = comSimpleAE | comPrusa;
+    def->set_default_value(new ConfigOptionInt(1));
 
     def = this->add("post_process", coStrings);
     def->label = L("Post-processing scripts");
@@ -7618,7 +7629,6 @@ void DynamicPrintConfig::normalize_fdm()
             opt_n->values.assign(opt_n->values.size(), false);  // Set all values to false.
         }
         {
-            this->opt<ConfigOptionInt>("perimeters", true)->value = 1;
             this->opt<ConfigOptionInt>("top_solid_layers", true)->value = 0;
             this->opt<ConfigOptionPercent>("fill_density", true)->value = 0;
             this->opt<ConfigOptionBool>("support_material", true)->value = false;
@@ -8091,7 +8101,9 @@ std::string validate(const FullPrintConfig& cfg)
     // --perimeters
     if (cfg.perimeters.value < 0)
         return "Invalid value for --perimeters";
-
+    // --spiral-vase-perimeters
+    if (cfg.spiral_vase_perimeters.value < 0)
+        return "Invalid value for --spiral-vase-perimeters";
     // --solid-layers
     if (cfg.top_solid_layers < 0)
         return "Invalid value for --top-solid-layers";

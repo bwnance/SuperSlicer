@@ -414,9 +414,19 @@ void PerimeterGenerator::process()
         int        loop_number = this->config->perimeters + surface.extra_perimeters - 1 + extra_odd_perimeter;  // 0-indexed loops
         surface_idx++;
 
+        if (print_config->spiral_vase) {
+            if (layer->id() < config->bottom_solid_layers){
+                loop_number = config->perimeters - 1;
+            }
+            else {
+                loop_number = config->spiral_vase_perimeters - 1;
+            }
+        }
+        
         if ((layer->id() == 0 && this->config->only_one_perimeter_first_layer) || (this->config->only_one_perimeter_top && loop_number > 0 && this->upper_slices == NULL)) {
             loop_number = 0;
         }
+        
 
         ExPolygons gaps;
         //this var store infill surface removed from last to not add any more perimeters to it.

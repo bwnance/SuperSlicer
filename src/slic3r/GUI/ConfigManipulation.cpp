@@ -72,8 +72,7 @@ void ConfigManipulation::update_print_fff_config(DynamicPrintConfig* config, con
     double fill_density = config->option<ConfigOptionPercent>("fill_density")->value;
 
     if (config->opt_bool("spiral_vase") && !(
-        config->opt_int("perimeters") == 1
-        && config->opt_int("top_solid_layers") == 0
+        config->opt_int("top_solid_layers") == 0
         && fill_density == 0
         && config->opt_bool("support_material") == false
         && config->opt_int("support_material_enforce_layers") == 0
@@ -390,6 +389,7 @@ void ConfigManipulation::toggle_print_fff_options(DynamicPrintConfig* config)
                     "infill_speed" })
         toggle_field(el, have_infill || has_solid_infill);
 
+    toggle_field("spiral_vase_perimeters", has_spiral_vase);
     toggle_field("top_solid_min_thickness", ! has_spiral_vase && has_top_solid_infill);
     toggle_field("bottom_solid_min_thickness", ! has_spiral_vase && has_bottom_solid_infill);
 

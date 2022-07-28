@@ -852,6 +852,7 @@ bool PrintObject::invalidate_state_by_config_options(
                 opt_key == "top_fill_pattern"
                 || opt_key == "bottom_fill_pattern"
                 || opt_key == "solid_fill_pattern"
+                || opt_key == "bridge_fill_pattern"
                 || opt_key == "enforce_full_fill_volume"
                 || opt_key == "fill_angle"
                 || opt_key == "fill_angle_increment"
@@ -865,6 +866,7 @@ bool PrintObject::invalidate_state_by_config_options(
                 || opt_key == "infill_connection_solid"
                 || opt_key == "infill_connection_top"
                 || opt_key == "infill_connection_bottom"
+                || opt_key == "infill_connection_bridge"
                 || opt_key == "seam_gap"
                 || opt_key == "top_infill_extrusion_spacing"
                 || opt_key == "top_infill_extrusion_width" ) {
